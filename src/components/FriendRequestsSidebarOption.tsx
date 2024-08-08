@@ -29,7 +29,7 @@ const FriendRequestsSidebarOption: FC<FriendRequestsSidebarOptionProps> = ({sess
         )
         pusherClient.unbind('incoming_friend_requests', friendRequestHandler)
       }
-    },[])
+    },[sessionId])
 
 
     return (

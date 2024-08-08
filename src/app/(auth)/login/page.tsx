@@ -8,7 +8,7 @@ interface pageProps {
   
 }
 
-const page: FC<pageProps> = ({}) => {
+const Page: FC<pageProps> = () => {
     const [isLoading, setIsLoading] = useState<boolean>(false)
     async function loginWithGoogle() {
       setIsLoading(true)
@@ -72,4 +72,4 @@ const page: FC<pageProps> = ({}) => {
   </>
 }
 
-export default page
+export default Page
