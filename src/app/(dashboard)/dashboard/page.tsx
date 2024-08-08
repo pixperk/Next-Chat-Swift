@@ -23,7 +23,15 @@ const page = async ({}) => {
         -1
       )) as string[]
 
-      const lastMessage = JSON.parse(lastMessageRaw) as Message
+      let lastMessage = null
+
+      if (lastMessageRaw) {
+        try {
+          lastMessage = JSON.parse(lastMessageRaw) as Message
+        } catch (error) {
+          console.error('Error parsing JSON:', error)
+        }
+      }
 
       return {
         ...friend,
@@ -68,11 +76,11 @@ const page = async ({}) => {
                 <h4 className='text-lg font-semibold'>{friend.name}</h4>
                 <p className='mt-1 max-w-md'>
                   <span className='text-zinc-400'>
-                    {friend.lastMessage.senderId === session.user.id
+                    {friend.lastMessage?.senderId === session.user.id
                       ? 'You: '
                       : `${friend.name}: `}
                   </span>
-                  {friend.lastMessage.text}
+                  {friend.lastMessage?.text || 'No messages yet'}
                 </p>
               </div>
             </Link>
